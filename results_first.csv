@@ -1,0 +1,8 @@
+period,	month,	stock_name,	model_acc,	model_pred_performance,	comp_performance
+2022,	June,	APPL,	0.75,	0.95,	0.8075
+2022,	June,	SNOW,	0.75,	0.93,	0.2485
+2022,	June,	TEAM,	0.75,	0.9,	0.9434
+2022,	June,	SPOT,	0.75,	0.88,	0.786
+2022,	June,	ZM,	0.75,	0.85,	0.9333
+
+

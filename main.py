@@ -4,13 +4,17 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 
 # loading local csv-file
+results_df=pd.read_csv('results_first.csv')
+
 df=pd.read_csv('AAPL_prices.csv')
 df['datadate']=pd.to_datetime(df['datadate'])
 
+cols = ['stock_name','model_acc','model_pred_performance','comp_performance']
+
 #showing file with streamlit
-st.header('Sample streamlit dashboard')
-st.subheader('share price of Apple')
-st.dataframe(df.head(5))
+st.header('Stock Pick Ai Top Picks')
+st.subheader("Stocks that would outperform S&P500")
+st.dataframe(results_df.head(5))
 
 # plot the csv-file
 fig = plt.figure(figsize=(20,5))
