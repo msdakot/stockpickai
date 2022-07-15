@@ -15,7 +15,7 @@ cols = ['stock_name','model_acc','model_pred_performance','comp_performance']
 st.header('Stock Pick Ai Top Picks')
 st.subheader("Stocks that would outperform S&P500")
 
-month_list = results_df['months'].unique().tolist()
+month_list = results_df['month'].unique().tolist()
 
 location_selector = st.selectbox(
     "Select a month",
