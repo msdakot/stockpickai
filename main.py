@@ -14,6 +14,13 @@ cols = ['stock_name','model_acc','model_pred_performance','comp_performance']
 #showing file with streamlit
 st.header('Stock Pick Ai Top Picks')
 st.subheader("Stocks that would outperform S&P500")
+
+month_list = results_df['months'].unique().tolist()
+
+location_selector = st.selectbox(
+    "Select a month",
+    month_list 
+)
 st.dataframe(results_df.head(5))
 
 # plot the csv-file
