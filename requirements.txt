@@ -3,3 +3,6 @@ matplotlib
 seaborn
 datetime
 streamlit>=0.65
+s3fs
+boto3
+plotly==5.9.0
