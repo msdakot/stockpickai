@@ -32,7 +32,7 @@ col_to_print = {'month':'Selected Month Period',
                 'model_accuracy': 'StockPick Model Accuracy'}
 filter_pick_df = top_picks_df[top_picks_df['month'] == month_selector].copy().rename(columns=col_to_print )
 
-st.dataframe(filter_pick_df[list(col_to_print.keys())].head(5))
+st.dataframe(filter_pick_df[list(col_to_print.values())].head(5))
 
 # plot the csv-file
 pio.templates.default = "plotly_white"
