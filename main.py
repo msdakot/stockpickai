@@ -8,7 +8,7 @@ import seaborn as sb
 # loading local csv-file
 top_picks_df=pd.read_csv('data/top_picks_information.csv')
 model_df=pd.read_csv('data/model-period-7-year-60-cycles.csv')
-chart_df = pd.read_csv('data/model-period-7-year-60-cycles.csv')
+chart_df = pd.read_csv('average_chart.csv')
 
 #processing 
 top_picks_df['start_date']=pd.to_datetime(top_picks_df['start_date'])
