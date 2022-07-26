@@ -19,7 +19,7 @@ top_picks_df['month'] = top_picks_df['start_date'].dt.to_period('M')
 st.header('Stock Pick Ai Top Picks')
 st.subheader("Stocks that would outperform S&P500")
 
-month_list = results_df['month'].unique().tolist()
+month_list = top_picks_df['month'].unique().tolist()
 
 month_selector = st.selectbox(
     "Select a month period",
