@@ -55,4 +55,6 @@ fig.update_layout(legend=dict(
     x=0.01
 ))
 
-fig.show()
+# fig.show()
+
+st.plotly_chart(fig)
