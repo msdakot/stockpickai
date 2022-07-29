@@ -79,12 +79,12 @@ chart_df['datadate']=pd.to_datetime(chart_df['datadate'])
 pio.templates.default = "plotly_white"
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=chart_df['date'], y=chart_df['Stocks Average Return'],
+fig.add_trace(go.Scatter(x=chart_df['datadate'], y=chart_df['Stocks Average Return'],
                     mode='lines',
                     line_color='#fe7062',
                     name='StockPick Avearge Return'))
 
-fig.add_trace(go.Scatter(x=chart_df['date'], y=chart_df['S and P Average Return'],
+fig.add_trace(go.Scatter(x=chart_df['datadate'], y=chart_df['S and P Average Return'],
                     mode='lines',
                     line_color='#456067',
                     name='S&P Average Return'))
