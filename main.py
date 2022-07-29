@@ -60,8 +60,7 @@ month_selector = st.selectbox(
     month_list 
 )
 
-col_to_print = {'month':'Selected Month Period',
-                'top_pick': 'StockPick Stocks',
+col_to_print = {'top_pick': 'StockPick Stocks',
                 'full_name':'StockPick Stock Name',
                 'start_date':'StockPick Buy Date',
                 'end_date':'StockPick Sell Date',
