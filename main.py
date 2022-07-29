@@ -110,4 +110,4 @@ model_col_rename = { 'feature':'Financial Data determining out-performance',
                      'scaled':'Feature Importance'
 
 }
-st.dataframe(model_df.rename(columns=model_col_rename)].head(10))
+st.dataframe(model_df.rename(columns=model_col_rename).head(10))
