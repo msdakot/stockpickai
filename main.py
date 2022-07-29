@@ -63,6 +63,8 @@ month_selector = st.selectbox(
 col_to_print = {'month':'Selected Month Period',
                 'top_pick': 'StockPick Stocks',
                 'full_name':'StockPick Stock Name',
+                'start_date':'StockPick Buy Date',
+                'end_date':'StockPick Sell Date',
                 'probability': 'Probability to outperform S&P',
                 'model_accuracy': 'StockPick Model Accuracy'}
 filter_pick_df = top_picks_df[top_picks_df['month'] == month_selector].copy().rename(columns=col_to_print )
@@ -99,3 +101,13 @@ fig.update_layout(legend=dict(
 # fig.show()
 
 st.plotly_chart(fig)
+
+
+#model explanability 
+model_col_rename = { 'feature':'Financial Data determining out-performance',
+                     'feature description':'Description',
+                     'value_score':'Feature Importance (unscaled)',
+                     'scaled':'Feature Importance'
+
+}
+st.dataframe(model_df.rename(columns=model_col_rename)].head(10))
