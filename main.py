@@ -49,11 +49,22 @@ top_picks_df['start_date']=pd.to_datetime(top_picks_df['start_date'])
 top_picks_df['month'] = top_picks_df['start_date'].dt.to_period('M')
 
 
-#showing file with streamlit
-st.header('Stock Pick Ai Top Picks')
-st.subheader("Stocks that would outperform S&P500")
 
 month_list = top_picks_df['month'].unique().tolist()
+
+
+#showing file with streamlit
+st.header('StockPick Top Ranked Stocks')
+st.subheader("Stocks that would outperform S&P500")
+
+st.markdown(
+    """
+    
+    <br><br/>
+    Increase the Returns-On-Investment and expand your investing based knowledge whether a stock with outperform SP500 Index. 
+    Start with our monthly top five runners, then explore why they are our top picks and make investment choices to match your risk appetite, click below.
+    """
+    , unsafe_allow_html=True)
 
 month_selector = st.selectbox(
     "Select a month period",
