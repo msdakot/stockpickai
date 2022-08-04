@@ -83,6 +83,24 @@ filter_model_df['scaled value score'] = min_max_scaling(filter_model_df['value s
 filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False)
 
 
+
+st.markdown(""" <h1 style = "font-family: Ubuntu, Helvetica, sans-serif; font-style: italic;"> Allow our automation to make you look like an investing genius </h1> """)
+st.markdown(
+    """
+    <p style = "font-family: Ubuntu, Helvetica">
+    <br><br/>
+    Our automated software helps optimize your investments by doing the work for you by picking stock collections based on multiple factors.
+    Expand your investment strategy by exploring what's powering our model and stock collections. 
+    Explore what financial features of the company or industry boost a stocks out-performance, what to be on the lookout for when investing longterm.
+    </p>
+    """
+    , unsafe_allow_html=True)
+
+month_selector = st.selectbox(
+    "Select a month period",
+    month_list 
+)
+
 #explanatory variables 
 st.dataframe(filter_model_df.head(10))
 
@@ -103,7 +121,6 @@ gallery_html = opening_html
 for description_child,content_child in zip(text_desc,text_def):
     gallery_html += flex_button_string(description_child,content_child)
 gallery_html += closing_html
-
 
 st.markdown("""<link href="button.css" """, unsafe_allow_html=True)
 st.markdown(gallery_html, unsafe_allow_html=True)
