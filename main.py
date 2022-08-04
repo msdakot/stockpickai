@@ -88,18 +88,13 @@ st.markdown(""" <h1 style = "font-size: 25px;
                               font-style: italic;
                               font-family: Ubuntu, Helvetica;">
                  Allow our automation to make you look like an investing genius 
-                 </h1> """, unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <p style = "font-family: Ubuntu, Helvetica">
-    <br><br/>
-    Our automated software helps optimize your investments by doing the work for you by picking stock collections based on multiple factors.
-    Expand your investment strategy by exploring what's powering our model and stock collections. 
-    Explore what financial features of the company or industry boost a stocks out-performance, what to be on the lookout for when investing longterm.
-    </p>
-    """
-    , unsafe_allow_html=True)
+                 </h1> 
+                  <p style = "font-family: Ubuntu, Helvetica">
+                    Our automated software helps optimize your investments by doing the work for you by picking stock collections based on multiple factors.
+                    Expand your investment strategy by exploring what's powering our model and stock collections. 
+                    Explore what financial features of the company or industry boost a stocks out-performance, what to be on the lookout for when investing longterm.
+                 </p>
+                 """, unsafe_allow_html=True)
 
 
 #explanatory variables 
