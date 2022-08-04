@@ -103,7 +103,7 @@ def  explore_average(avg_model_df):
     return st.plotly_chart(fig)
 
 def explore_monthly(filter_model_df):
-    st.button('Back to galaxies')
+    st.button('Back to Averages')
     filter_model_df['scaled value score'] = min_max_scaling(filter_model_df['value score'])
     filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False)
 
@@ -141,18 +141,8 @@ def explore_monthly(filter_model_df):
     gallery_html += closing_html
 
     st.markdown("""<link href="button.css" """, unsafe_allow_html=True)
-    return st.markdown(gallery_html, unsafe_allow_html=True), st.plotly_chart(fig)
+    return st.plotly_chart(fig),st.markdown(gallery_html, unsafe_allow_html=True)
 
-
-should_tell_me_more = st.button('Explore monthly features')
-if should_tell_me_more:
-    explore_monthly(filter_model_df)
-    st.markdown('---')
-else:
-    st.markdown('---')
-    explore_average(avg_model_df)
-
-#model feature importance filter
 
 st.markdown(""" <h1 style = "font-size: 23px;
                               font-style: italic;
@@ -165,6 +155,16 @@ st.markdown(""" <h1 style = "font-size: 23px;
                     Explore what financial features of the company or industry boost a stocks out-performance, what to be on the lookout for when investing longterm.
                  </p>
                  """, unsafe_allow_html=True)
+
+should_tell_me_more = st.button('Explore monthly features')
+if should_tell_me_more:
+    explore_monthly(filter_model_df)
+    st.markdown('---')
+else:
+    st.markdown('---')
+    explore_average(avg_model_df)
+
+
 
 
 
