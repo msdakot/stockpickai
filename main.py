@@ -97,7 +97,6 @@ def  explore_average(avg_model_df):
                 x= avg_model_df['feature'], y=avg_model_df['value_score'],
                 text=avg_model_df['feature definition'],
                 textposition='outside',
-                width=800,
                 marker=dict(color='#fe7062',
                             line=None)))
 
@@ -121,7 +120,6 @@ def explore_monthly(filter_model_df):
     fig.add_trace(go.Bar(
                 x= filter_model_df['feature'], y=filter_model_df['value score'],
                 text=avg_model_df['feature definition'],
-                width=800,
                 textposition='outside',
                 marker=dict(color='#fe7062',
                             line=None)))
