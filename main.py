@@ -87,27 +87,55 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 st.dataframe(filter_model_df.head(10))
 
 
-#html
-# text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
+html
+text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
 
-# opening_html = '<div>'
-# closing_html = '</div>'
+opening_html = '<div>'
+closing_html = '</div>'
 
-# def flex_button_string(description_child,content_child):
-#     return (f'''
-#         <button type="button" class="collapsible">{description_child}</button>
-#         <div class="content">
-#         <p>{content_child}</p>
-#         </div>
-#     ''')
+def flex_button_string(description_child,content_child):
+    return (f'''
+        <button type="button" class="collapsible">{description_child}</button>
+        <div class="content">
+        <p>{content_child}</p>
+        </div>
+    ''')
 
-# gallery_html = opening_html
-# for description_child,content_child in zip(text_desc,text_def):
-#     gallery_html += flex_button_string(description_child,content_child)
-# gallery_html += closing_html
+gallery_html = opening_html
+for description_child,content_child in zip(text_desc,text_def):
+    gallery_html += flex_button_string(description_child,content_child)
+gallery_html += closing_html
 
+gallery_main_html = f"""
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
 
-# st.markdown(gallery_html, unsafe_allow_html=True)
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+</style>
+
+{gallery_html}
+"""
+
+st.markdown(gallery_main_html, unsafe_allow_html=True)
 
 
 # stock_list_to_plot =  filter_pick_df['StockPick Stocks'].tolist()
