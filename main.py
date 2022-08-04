@@ -84,39 +84,30 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 
 
 #explanatory variables 
-
-#model explanability 
-# model_col_rename = { 'feature':'Financial Data determining out-performance',
-#                      'feature description':'Description',
-#                      'value_score':'Feature Importance (unscaled)',
-#                      'scaled':'Feature Importance'
-
-# }
-# st.dataframe(model_df.rename(columns=model_col_rename).head(10))
-
+st.dataframe(filter_model_df.head(10))
 
 
 #html
-text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
+# text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
 
-opening_html = '<div>'
-closing_html = '</div>'
+# opening_html = '<div>'
+# closing_html = '</div>'
 
-def flex_button_string(description_child,content_child):
-    return (f'''
-        <button type="button" class="collapsible">{description_child}</button>
-        <div class="content">
-        <p>{content_child}</p>
-        </div>
-    ''')
+# def flex_button_string(description_child,content_child):
+#     return (f'''
+#         <button type="button" class="collapsible">{description_child}</button>
+#         <div class="content">
+#         <p>{content_child}</p>
+#         </div>
+#     ''')
 
-gallery_html = opening_html
-for description_child,content_child in zip(text_desc,text_def):
-    gallery_html += flex_button_string(description_child,content_child)
-gallery_html += closing_html
+# gallery_html = opening_html
+# for description_child,content_child in zip(text_desc,text_def):
+#     gallery_html += flex_button_string(description_child,content_child)
+# gallery_html += closing_html
 
 
-st.markdown(gallery_html, unsafe_allow_html=True)
+# st.markdown(gallery_html, unsafe_allow_html=True)
 
 
 # stock_list_to_plot =  filter_pick_df['StockPick Stocks'].tolist()
