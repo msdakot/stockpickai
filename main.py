@@ -85,6 +85,7 @@ st.dataframe(filter_pick_df[list(col_to_print.values())].head(5))
 
 filter_model_df = model_df[model_df['month']==month_selector].copy()
 
+
 def  explore_average(avg_model_df):
     #plot average model features
 
@@ -96,17 +97,20 @@ def  explore_average(avg_model_df):
                 x= avg_model_df['feature'], y=avg_model_df['value_score'],
                 text=avg_model_df['feature definition'],
                 textposition='outside',
+                width=800,
                 marker=dict(color='#fe7062',
                             line=None)))
 
-    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+    fig.update_layout(uniformtext_minsize=8, 
+                     uniformtext_mode='hide',
+                     title='Feature Importance Average for 1 Year',)
     # fig.show()
     return st.plotly_chart(fig)
 
 def explore_monthly(filter_model_df):
     st.button('Back to Averages')
     filter_model_df['scaled value score'] = min_max_scaling(filter_model_df['value score'])
-    filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False)
+    filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False).head(15)
 
     #explanatory variables 
 
@@ -117,11 +121,14 @@ def explore_monthly(filter_model_df):
     fig.add_trace(go.Bar(
                 x= filter_model_df['feature'], y=filter_model_df['value score'],
                 text=avg_model_df['feature definition'],
+                width=800,
                 textposition='outside',
                 marker=dict(color='#fe7062',
                             line=None)))
 
-    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+    fig.update_layout(uniformtext_minsize=8, 
+                      uniformtext_mode='hide',
+                      title='Top 10 Feature Importance for Monthly Predictions')
     
     text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
 
