@@ -48,7 +48,7 @@ chart_df['datadate'] = pd.to_datetime(chart_df['datadate'])
 month_list = top_picks_df['month'].unique().tolist()
 #
 #showing file with streamlit
-st.header('StockPick Top Ranked Stocks')
+# st.header('StockPick Top Ranked Stocks')
 st.subheader("Stocks that would outperform S&P500")
 
 st.markdown(
@@ -84,11 +84,11 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 
 
 
-st.markdown(""" <p style = "font-size: 25px;
+st.markdown(""" <h1 style = "font-size: 25px;
                               font-style: italic;
                               font-family: Ubuntu, Helvetica;">
                  Allow our automation to make you look like an investing genius 
-                 <p> """, unsafe_allow_html=True)
+                 </h1> """, unsafe_allow_html=True)
 
 st.markdown(
     """
