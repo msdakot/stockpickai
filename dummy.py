@@ -40,6 +40,8 @@ model_df = model_df.merge(model_desc_df, how='left', on='feature')
 model_df['datadate'] = pd.to_datetime(model_df['datadate'])
 model_df['month'] = model_df ['datadate'].dt.to_period('M')
 
+model_df.to_csv('model_df.csv')
+
 #chart df
 chart_df = s3f.getmonthlyavgchart().reset_index()
 chart_df['datadate']=pd.to_datetime(chart_df['datadate'])
