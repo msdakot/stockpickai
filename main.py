@@ -37,7 +37,7 @@ model_df.columns = ['datadate','feature','value score']
 model_desc_df = pd.read_csv('data/feature_definition.csv')
 model_df = model_df.merge(model_desc_df, how='left', on='feature')
 
-model_df ['datadate'] = pd.to_datetime(top_picks_df['datadate'])
+model_df['datadate'] = pd.to_datetime(model_df['datadate'])
 model_df['month'] = model_df ['datadate'].dt.to_period('M')
 
 #chart df
