@@ -87,7 +87,6 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 st.dataframe(filter_model_df.head(10))
 
 
-html
 text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
 
 opening_html = '<div>'
