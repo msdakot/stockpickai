@@ -1,0 +1,138 @@
+feature,feature description,feature definition
+adjusted_price,Adjusted Stock Price,"Historical, daily stock prices after adjusting for dividends and splits (if any). A Momentum indicator that signals if stock had uptrending prices in the past precludes uptrending prices in the future."
+rd_sale,Research and Development/Sales,"Research and development (R&D) spending as a percentage of sales. Higher usually means better, as the company is re-investing its revenue into its own products, patents, etc, which encourages long term growth."
+exchg,Stock Exchange Code,"Essentially the same as country code. Lower number = Developed markets, Higher number = Emerging markets. Stocks in developed markets should do better due to more stability in the governments. We could also argue that stocks in emerging markets should do better since investors will be compensated for the additional risk they take, but we have not seen this play out in the markets just yet."
+inv_turn,Inventory Turnover,COGS as a fraction of the average Inventories based on the most recent two periods
+fcf_ocf,Free Cash Flow/Operating Cash Flow,"Free Cash Flow as a fraction of Operating Cash Flow, where Free Cash Flow is defined as the difference between Operating Cash Flow and Capital Expenditures"
+ps,Price/Sales,Multiple of Market Value of Equity to Sales
+de_ratio,Total Debt/Equity,Total Liabilities to Shareholders’ Equity (common and preferred)
+ajexdi,Adjustment Factor,Accounts for stock splits and associated dividend. We avoid putting this in the model since it gives a hint as to how well the stock will do in the future.
+debt_assets,Total Debt/Total Assets,Total Debt as a fraction of Total Assets
+at_turn,Asset Turnover,Sales as a fraction of the average Total Assets based on the most recent two periods
+evm,Enterprise Value Multiple,Multiple of Enterprise Value to EBITDA
+gpm,Gross Profit Margin,Gross Profit as a fraction of Sales
+lt_ppent,Total Liabilities/Total Tangible Assets,Total Liabilities to Total Tangible Assets
+capei,Shillers Cyclically Adjusted P/E Ratio,Multiple of Market Value of Equity to 5-year moving average of Net Income
+ptb,Price/Book,Multiple of Market Value of Equity to Book Value of Equity
+peg_trailing,Trailing P/E to Growth,"Price-to-Earnings, excl. Extraordinary Items (diluted) to 3-Year past EPS Growth"
+volatility,Volatility,"Annualized Volatility of the stock, which boils down to Standard Deviation of Daily Returns, annualized."
+pcf,Price/Cash flow,Multiple of Market Value of Equity to Net Cash Flow from Operating Activities
+roa,Return on Assets,Operating Income Before Depreciation as a fraction of average Total Assets based on most recent two periods
+gprof,Gross Profit/Total Assets,Gross Profitability as a fraction of Total Assets
+market_cap,Market Cap,"Market capitalization of the company, calculated as Price * Common Shares Outstanding"
+debt_ebitda,Total Debt/EBITDA,Gross Debt as a fraction of EBITDA
+invt_act,Inventory/Current Assets,Inventories as a fraction of Current Assets
+intcov_ratio,Interest Coverage Ratio,Multiple of Earnings Before Interest and Taxes to Interest and Related Expenses
+rect_act,Receivables/Current Assets,Accounts Receivables as a fraction of Current Assets
+divyield,Dividend Yield,Indicated Dividend Rate as a fraction of Price
+dvi,Indicated Annual Dividend,Indicated Annual Dividend (nominal)
+dpr,Dividend Payout Ratio,Dividends as a fraction of Income Before Extra. Items
+pay_turn,Payables Turnover,COGS and change in Inventories as a fraction of the average of Accounts Payable based on the most recent two periods
+capital_ratio,Capitalization Ratio,"Total Long-term Debt as a fraction of the sum of Total Long-term Debt, Common/Ordinary Equity and Preferred Stock"
+accrual,Accruals/Average Assets,Accruals as a fraction of average Total Assets based on most recent two periods
+cash_lt,Cash Balance/Total Liabilities,Cash Balance as a fraction of Total Liabilities
+divd,Cash Dividends,Cash Dividend Amount (nominal)
+rect_turn,Receivables Turnover,Sales as a fraction of the average of Accounts Receivables based on the most recent two periods
+totdebt_invcap,Total Debt/Invested Capital,Total Debt (Long-term and Current) as a fraction of Invested Capital
+adv_sale,Advertising Expenses/Sales,Advertising Expenses as a fraction of Sales
+int_debt,Interest/Average Long-term Debt,Interest as a fraction of average Long-term debt based on most recent two periods
+pe_op_dil,Price/Operating Earnings,"Price to Operating EPS, excl. Extraordinary Items (Diluted)"
+pretret_earnat,Pre-tax Return on Total Earning Assets,"Operating Income After Depreciation as a fraction of average Total Earnings Assets (TEA) based on most recent two periods, where TEA is defined as the sum of Property Plant and Equipment and Current Assets"
+cash_debt,Cash Flow/Total Debt,Operating Cash Flow as a fraction of Total Debt
+dvrated,Indicated Annual Dividend Rate,Indicated Dividend Rate as a fraction of Price
+eps,Current EPS,Current Earnings Per Share (trailing twelve months ttm)
+dltt_be,Long-term Debt/Book Equity,Long-term Debt to Book Equity
+sale_equity,Sales/Stockholders Equity,Sales per dollar of total Stockholders’ Equity
+efftax,Effective Tax Rate,Income Tax as a fraction of Pretax Income
+cshoc,Shares Outstanding,Current number of common shares outstanding
+cash_conversion,Cash Conversion Cycle,Inventories per daily COGS plus Account Receivables per daily Sales minus Account Payables per daily COGS
+pe_op_basic,Price/Operating Earnings,"Price to Operating EPS, excl. Extraordinary Items (Basic)"
+bm,Book/Market,Book Value of Equity as a fraction of Market Value of Equity
+intcov,After-tax Interest Coverage,Multiple of After-tax Income to Interest and Related Expenses
+sale_nwc,Sales/Working Capital,"Sales per dollar of Working Capital, defined as difference between Current Assets and Current Liabilities"
+ocf_lct,Operating CF/Current Liabilities,Operating Cash Flow as a fraction of Current Liabilities
+roce,Return on Capital Employed,"Earnings Before Interest and Taxes as a fraction of average Capital Employed based on most recent two periods, where Capital Employed is the sum of Debt in Long-term and Current Liabilities and Common/ Ordinary Equity"
+debt_invcap,Long-term Debt/Invested Capital,Long-term Debt as a fraction of Invested Capital
+trfd,Daily Total Return Factor,The factor that takes into account total dividends if reinvested into the stock.
+debt_capital,Total Debt/Capital,"Total Debt as a fraction of Total Capital, where Total Debt is defined as the sum of Accounts Payable and Total Debt in Current and Long-Term"
+quick_ratio,Quick Ratio,Quick Ratio: Current Assets net of Inventories as a fraction of Current Liabilities
+ptpm,Pre-tax Profit Margin,Pretax Income as a fraction of Sales
+curr_debt,Current Liabilities/Total Liabilities,Current Liabilities as a fraction of Total Liabilities
+debt_at,Total Debt/Total Assets,Total Liabilities as a fraction of Total Assets
+curr_ratio,Current Ratio,Current Assets as a fraction of Current Liabilities
+peg_1yrforward,Forward P/E to 1-year Growth,"Price-to-Earnings, excl. Extraordinary Items (diluted) to 1-Year EPS Growth rate"
+int_totdebt,Interest/Average Total Debt,Interest as a fraction of average Total Debt based on most recent two periods
+lt_debt,Long-term Debt/Total Liabilities,Long-term Debt as a fraction of Total Liabilities
+aftret_invcapx,After-tax Return on Invested Capital,Net Income plus Interest Expenses as a fraction of Invested Capital
+pretret_noa,Pre-tax return on Net Operating Assets,"Operating Income After Depreciation as a fraction of average Net Operating Assets (NOA) based on most recent two periods, where NOA is defined as the sum of Property Plant and Equipment and Current Assets minus Current Liabilities"
+aftret_eq,After-tax Return on Average Common Equity,Net Income as a fraction of average of Common Equity based on most recent two periods
+pe_exi,Profit Earnings Ratio,"Price-to-Earnings, excl. Extraordinary Items (diluted)"
+peg_ltgforward,Forward P/E to Long-term Growth,"Price-to-Earnings, excl. Extraordinary Items (diluted) to Long-term EPS Growth rate"
+div,Dividends per Share,Total Dividends divided by total number of Common shares outstanding
+short_debt,Short-Term Debt/Total Debt,Short-term Debt as a fraction of Total Debt
+sale_invcap,Sales/Invested Capital,Sales per dollar of Invested Capital
+npm,Net Profit Margin,Net Income as a fraction of Sales
+staff_sale,Labor Expenses/Sales,Labor Expenses as a fraction of Sales
+cfm,Cash Flow Margin,Income before Extraordinary Items and Depreciation as a fraction of Sales
+cshtrd,Trading Volume,Total trading volume in shares
+profit_lct,Profit Before Depreciation/Current Liabilities,Operating Income before D&A as a fraction of Current Liabilities
+equity_invcap,Common Equity/Invested Capital,Common Equity as a fraction of Invested Capital
+opmbd,Operating Profit Margin Before Depreciation,Operating Income Before Depreciation as a fraction of Sales
+roe,Return on Equity,"Net Income as a fraction of average Book Equity based on most recent two periods, where Book Equity is defined as the sum of Total Parent Stockholders' Equity and Deferred Taxes and Investment Tax Credit"
+cash_ratio,Cash Ratio,Cash and Short-term Investments as a fraction of Current Liabilities
+aftret_equity,After-tax Return on Total Stockholders Equity,Net Income as a fraction of average of Total Shareholders’ Equity based on most recent two periods
+opmad,Operating Profit Margin After Depreciation,Operating Income After Depreciation as a fraction of Sales
+pe_inc,Profit Earnings Ratio,"Price-to-Earnings, incl. Extraordinary Items (diluted)"
+daily_chg,Daily Change in price,Daily Change in price
+cheqv,Cash Equivalent Distributions,Cash Equivalent Distributions
+divsp,Special Cash Dividends,"Special Cash Dividends, if any"
+epsmo,Current EPS Month,NA
+dlcq,Debt in Current Liabilities,Amount of debt within current liabilities
+sgna_expense_yoy_chg,"Selling, General Administrative Expense Year Over Year Change","Y/Y change of expenses on selling, general, and administrative activities."
+fcf,Free Cash Flow,NA
+sbc,Stock Compensation Expense,Stock Compensation Expense
+operating_income,Operating Income After Depreciation - Quarterly,Operating Income After Depreciation - Quarterly
+sgna_expense,"Selling, General and Administrative Expenses","Selling, General and Administrative Expenses"
+rstcheq,Restricted Cash & Investments,Restricted Cash & Investments
+net_income_ann_yoy_chg,Annual Net Income Year Over Year Change,Annual Net Income Year Over Year Change
+bool_cfo_ni,Operating Activities - Net Cash Flow greater than Net Income,NA
+divdpaydateind,Cash Dividends,NA
+net_income_yoy_chg,Net Income Year over year Change,Net Income Year over year Change
+revenue_ann_yoy_chg,Annual Revenue Year over Year Change,Annual Revenue Year over Year Change
+fdateq,Final Date,NA
+cshoq,Common Shares Outstanding,Common Shares Outstanding
+cogs,Cost of Goods Sold,Cost of Goods Sold
+pdateq,Preliminary Date,NA
+revenue_yoy_chg,Revenue Year over Year change,Revenue Year over Year change
+rstcheltq,Long,NA
+total_operating_expense,Total Operating Expenses,Total Operating Expenses
+sbc_yoy_chg,Stock Compensation Expense Year over year change,Stock Compensation Expense Year over year change
+revenue,Total Revenue,Total Revenue
+capgnpaydate,Capital Gains Payment Date,NA
+operating_income_yoy_chg,Operating Income Year over Year change,Operating Income Year over Year change
+adrrc,ADR Ratio,NA
+fyear,#N/A,NA
+bool_fcf_ni,Free Cash Flow greater than Net Income,NA
+capxy,Capital Expenditures,YTD Capital expenditure spending
+dd1q,Long,NA
+operating_income_ann,Annual Operating Income,Annual Operating Income
+capgn,Capital Gains,NA
+prccq,Price Close - Quarter,Closing price on a quarterly basis
+cogs_yoy_chg,Cost of Goods Sold Year over year change,Cost of Goods Sold Year over year change
+cheq,Cash and Short Term Cash Equivalents,Cash and Short Term Cash Equivalents
+net_income_ann,Annual Net Income,Annual Net Income
+net_income,Net Income,Net Income
+divrc,#N/A,NA
+oancfy,Operating Activities - Net Cash Flow,Year to date cash flow from operations
+stkcoq,Stock Compensation Expense,Quarterly stock compensation expense
+dlttq,Long,NA
+fqtr,Fiscal Quarter,Fiscal Quarter
+tic,Ticker Symbol,Ticker Symbol
+gross_profit_yoy_chg,Gross Profit Year over Year change,Gross Profit Year over Year change
+fyearq,Fiscal Year,Fiscal Year
+gross_profit,Gross Profit,Gross Profit
+rnd_expense,Research and Development Expense,Research and Development Expense
+rnd_expense_yoy_chg,Research and Development Year over year change,Research and Development Year over year change
+enterprise_value,Enterprise Value,Calculated as Market Cap + All Debt - All Cash
+revenue_ann,Annual Revenue,Annual Revenue
+operating_income_ann_yoy_chg,Annual Operating Income Year over Year change,Annual Operating Income Year over Year change

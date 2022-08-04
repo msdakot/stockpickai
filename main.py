@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 import seaborn as sb
 import s3fs
+import s3finance as s3c
 import boto3
 import botocore
 
@@ -13,46 +14,39 @@ ACCESS_KEY = st.secrets['AWS_ACCESS_KEY_ID']
 SECRET_KEY = st.secrets['AWS_SECRET_ACCESS_KEY']
 BUCKET = 'w210-wrds-data'
 
-S3_READ_TIMEOUT = 180
-S3_MAX_ATTEMPTS = 5
-
-s3_config = botocore.config.Config(read_timeout=S3_READ_TIMEOUT,retries={'max_attempts': S3_MAX_ATTEMPTS})
-
-
-s3_client = boto3.session.Session(
-        aws_access_key_id=ACCESS_KEY,
-        aws_secret_access_key=SECRET_KEY,).client('s3',config=s3_config)
+s3f = s3c.s3finance(BUCKET,
+                    aws_access_key_id=ACCESS_KEY,
+                    aws_secret_access_key=SECRET_KEY)
 
 
-# def get_latest(aws_bucket, directory):
-    
-#     result = s3_client.list_objects_v2(Bucket=aws_bucket,Prefix= (directory+"/"),Delimiter='/')
-#     dir_ls = []
-#     for obj in result.get('CommonPrefixes', []):
-#         path = obj['Prefix']
-#         dir_ls.append(path.rsplit('/')[-2])
-#     return max(dir_ls)
+def min_max_scaling(column):
+    return(column - column.min())/(column.max()-column.min())
 
-# def s3_parquet_object_as_df(aws_bucket, directory, dataset):
-#     latest_version = get_latest(aws_bucket, directory)
-#     aws_object_path = f's3://{aws_bucket}/{directory}/{latest_version}/{dataset}.csv'
-    
-#     return pd.read_parquet(aws_object_path)
-
-# loading local csv-file
-top_picks_df=pd.read_csv('data/top_picks_information.csv')
-model_df=pd.read_csv('data/model-period-10-year-120-cycles.csv')
-chart_df = pd.read_csv('data/average_chart.csv').reset_index()
-
-#processing 
+# toppick df
+top_picks_df = s3f.gettoppickstable()
 top_picks_df['start_date']=pd.to_datetime(top_picks_df['start_date'])
 top_picks_df['month'] = top_picks_df['start_date'].dt.to_period('M')
 
+#feature df
+modelname = 'model-period-10-year-214-cycles-1659216789.930134-full'
+model_pre_df = s3f.getmodelexplainability(modelname)
+feature_vars = model_pre_df.columns
+model_pre_df = model_pre_df.reset_index()
+model_df  = pd.melt(model_pre_df, id_vars='datadate', value_vars=feature_vars)
+model_df.columns = ['datadate','feature','value score']
+model_desc_df = pd.read_csv('data/feature_definition.csv')
+model_df = model_df.merge(model_desc_df, how='left', on='feature')
 
+model_df ['datadate'] = pd.to_datetime(top_picks_df['datadate'])
+model_df['month'] = model_df ['datadate'].dt.to_period('M')
 
+#chart df
+chart_df = s3f.getmonthlyavgchart().reset_index()
+chart_df['datadate'] = pd.to_datetime(chart_df['datadate'])
+
+#get unique months
 month_list = top_picks_df['month'].unique().tolist()
-
-
+#
 #showing file with streamlit
 st.header('StockPick Top Ranked Stocks')
 st.subheader("Stocks that would outperform S&P500")
@@ -71,6 +65,7 @@ month_selector = st.selectbox(
     month_list 
 )
 
+#toppick filter
 col_to_print = {'top_pick': 'StockPick Stocks',
                 'full_name':'StockPick Stock Name',
                 'start_date':'StockPick Buy Date',
@@ -81,13 +76,52 @@ filter_pick_df = top_picks_df[top_picks_df['month'] == month_selector].copy().re
 
 st.dataframe(filter_pick_df[list(col_to_print.values())].head(5))
 
+#model feature importance filter
 
-stock_list_to_plot =  filter_pick_df['StockPick Stocks'].tolist()
+filter_model_df = model_df[model_df['month']==month_selector].copy()
+filter_model_df['scaled value score'] = min_max_scaling(filter_model_df['value score'])
+filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False)
 
-# plot the csv-file
-#processing 
-chart_df['datadate']=pd.to_datetime(chart_df['datadate'])
 
+#explanatory variables 
+
+#model explanability 
+# model_col_rename = { 'feature':'Financial Data determining out-performance',
+#                      'feature description':'Description',
+#                      'value_score':'Feature Importance (unscaled)',
+#                      'scaled':'Feature Importance'
+
+# }
+# st.dataframe(model_df.rename(columns=model_col_rename).head(10))
+
+
+
+#html
+text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
+
+opening_html = '<div style=display:flex;flex-wrap:wrap>'
+closing_html = '</div>'
+
+def flex_button_string(description_child,content_child):
+    return (f'''
+        <button type="button" class="collapsible">{description_child}</button>
+        <div class="content">
+        <p>{content_child}</p>
+        </div>
+    ''')
+
+gallery_html = opening_html
+for description_child,content_child in zip(text_desc,text_def):
+    gallery_html += flex_button_string(description_child,content_child)
+gallery_html += closing_html
+
+
+st.markdown(gallery_html, unsafe_allow_html=True)
+
+
+# stock_list_to_plot =  filter_pick_df['StockPick Stocks'].tolist()
+
+# plot the csv-file 
 pio.templates.default = "plotly_white"
 
 fig = go.Figure()
@@ -111,13 +145,3 @@ fig.update_layout(legend=dict(
 # fig.show()
 
 st.plotly_chart(fig)
-
-
-#model explanability 
-model_col_rename = { 'feature':'Financial Data determining out-performance',
-                     'feature description':'Description',
-                     'value_score':'Feature Importance (unscaled)',
-                     'scaled':'Feature Importance'
-
-}
-st.dataframe(model_df.rename(columns=model_col_rename).head(10))
