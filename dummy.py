@@ -44,6 +44,7 @@ model_df.to_csv('model_df.csv')
 #average feature df 
 avg_model_df = s3f.getmodelexplainability(modelname+'-average')
 avg_model_df = avg_model_df.merge(model_desc_df, how='left', on='feature')
+avg_model_df.to_csv("avg_model_df.csv")
 
 #chart df
 chart_df = s3f.getmonthlyavgchart().reset_index()

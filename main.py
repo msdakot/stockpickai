@@ -107,10 +107,12 @@ pio.templates.default = "plotly_white"
 
 fig = go.Figure()
 
-fig.add_trace(go.Figure(data=[go.Bar(
+fig.add_trace(go.Bar(
             x= avg_model_df['feature'], y=avg_model_df['value_score'],
             text=avg_model_df['feature definition'],
-            textposition='outside',)]))
+            textposition='outside',
+            marker=dict(color='#fe7062',
+                        line=None)))
 
 fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
 # fig.show()
