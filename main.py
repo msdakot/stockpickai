@@ -84,7 +84,10 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 
 
 
-st.markdown(""" <h1 style = "font-family: Ubuntu, Helvetica, sans-serif; font-style: italic;"> Allow our automation to make you look like an investing genius </h1> """)
+st.markdown(""" <h1 style= = "font-family: Ubuntu, Helvetica; font-style: italic;">
+                 Allow our automation to make you look like an investing genius 
+                 </h1> """, unsafe_allow_html=True)
+
 st.markdown(
     """
     <p style = "font-family: Ubuntu, Helvetica">
