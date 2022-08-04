@@ -86,7 +86,6 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 #explanatory variables 
 st.dataframe(filter_model_df.head(10))
 
-
 text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
 
 opening_html = '<div>'
@@ -105,35 +104,34 @@ for description_child,content_child in zip(text_desc,text_def):
     gallery_html += flex_button_string(description_child,content_child)
 gallery_html += closing_html
 
-gallery_main_html = f"""
-<style>
-.collapsible {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
+gallery_main_html = f'''
+    <style>
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        }
 
-.active, .collapsible:hover {
-  background-color: #555;
-}
+    .active, .collapsible:hover {
+        background-color: #555;
+        }
 
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-</style>
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+        }
+    </style>
 
-{gallery_html}
-"""
-
+'''
+st.markdown(gallery_main_html, unsafe_allow_html=True)
 st.markdown(gallery_main_html, unsafe_allow_html=True)
 
 
