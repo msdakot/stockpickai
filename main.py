@@ -43,6 +43,7 @@ model_df['month'] = model_df ['datadate'].dt.to_period('M')
 #average feature df 
 avg_model_df = s3f.getmodelexplainability(modelname+'-average')
 avg_model_df = avg_model_df.merge(model_desc_df, how='left', on='feature')
+avg_model_df  = avg_model_df.sort_values(by='value_score', ascending =False).head(20)
 
 # avg_model_df = avg_model_df.sort_values(by='value_score', ascending=False).head(10)
 
@@ -163,10 +164,6 @@ if should_tell_me_more:
 else:
     st.markdown('---')
     explore_average(avg_model_df)
-
-
-
-
 
 # plot the csv-file 
 pio.templates.default = "plotly_white"
