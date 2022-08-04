@@ -44,7 +44,7 @@ model_df['month'] = model_df ['datadate'].dt.to_period('M')
 avg_model_df = s3f.getmodelexplainability(modelname+'-average')
 avg_model_df = avg_model_df.merge(model_desc_df, how='left', on='feature')
 
-avg_model_df = avg_model_df.sort_values(by='value score', ascending=False).head(10)
+avg_model_df = avg_model_df.sort_values(by='value_score', ascending=False).head(10)
 
 #chart df
 chart_df = s3f.getmonthlyavgchart().reset_index()
