@@ -82,13 +82,77 @@ filter_pick_df = top_picks_df[top_picks_df['month'] == month_selector].copy().re
 
 st.dataframe(filter_pick_df[list(col_to_print.values())].head(5))
 
-#model feature importance filter
-
 filter_model_df = model_df[model_df['month']==month_selector].copy()
-filter_model_df['scaled value score'] = min_max_scaling(filter_model_df['value score'])
-filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False)
+
+def  explore_average(avg_model_df):
+    #plot average model features
+
+    pio.templates.default = "plotly_white"
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+                x= avg_model_df['feature'], y=avg_model_df['value_score'],
+                text=avg_model_df['feature definition'],
+                textposition='outside',
+                marker=dict(color='#fe7062',
+                            line=None)))
+
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+    # fig.show()
+    return st.plotly_chart(fig)
+
+def explore_monthly(filter_model_df):
+    st.button('Back to galaxies')
+    filter_model_df['scaled value score'] = min_max_scaling(filter_model_df['value score'])
+    filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascending=False)
+
+    #explanatory variables 
+
+    pio.templates.default = "plotly_white"
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+                x= filter_model_df['feature'], y=filter_model_df['value score'],
+                text=avg_model_df['feature definition'],
+                textposition='outside',
+                marker=dict(color='#fe7062',
+                            line=None)))
+
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+    
+    text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
+
+    opening_html = '<div>'
+    closing_html = '</div>'
+
+    def flex_button_string(description_child,content_child):
+        return (f'''
+            <button type="button" class="collapsible">{description_child}</button>
+            <div class="content">
+            <p>{content_child}</p>
+            </div>
+        ''')
+
+    gallery_html = opening_html
+    for description_child,content_child in zip(text_desc,text_def):
+        gallery_html += flex_button_string(description_child,content_child)
+    gallery_html += closing_html
+
+    st.markdown("""<link href="button.css" """, unsafe_allow_html=True)
+    return st.markdown(gallery_html, unsafe_allow_html=True), st.plotly_chart(fig)
 
 
+should_tell_me_more = st.button('Explore monthly features')
+if should_tell_me_more:
+    explore_monthly(filter_model_df)
+    st.markdown('---')
+else:
+    st.markdown('---')
+    explore_average(avg_model_df)
+
+#model feature importance filter
 
 st.markdown(""" <h1 style = "font-size: 23px;
                               font-style: italic;
@@ -103,52 +167,6 @@ st.markdown(""" <h1 style = "font-size: 23px;
                  """, unsafe_allow_html=True)
 
 
-#plot average model features
-
-pio.templates.default = "plotly_white"
-
-fig = go.Figure()
-
-fig.add_trace(go.Bar(
-            x= avg_model_df['feature'], y=avg_model_df['value_score'],
-            text=avg_model_df['feature definition'],
-            textposition='outside',
-            marker=dict(color='#fe7062',
-                        line=None)))
-
-fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-# fig.show()
-st.plotly_chart(fig)
-
-
-
-
-#explanatory variables 
-st.dataframe(filter_model_df.head(10))
-
-text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
-
-opening_html = '<div>'
-closing_html = '</div>'
-
-def flex_button_string(description_child,content_child):
-    return (f'''
-        <button type="button" class="collapsible">{description_child}</button>
-        <div class="content">
-        <p>{content_child}</p>
-        </div>
-    ''')
-
-gallery_html = opening_html
-for description_child,content_child in zip(text_desc,text_def):
-    gallery_html += flex_button_string(description_child,content_child)
-gallery_html += closing_html
-
-st.markdown("""<link href="button.css" """, unsafe_allow_html=True)
-st.markdown(gallery_html, unsafe_allow_html=True)
-
-
-# stock_list_to_plot =  filter_pick_df['StockPick Stocks'].tolist()
 
 # plot the csv-file 
 pio.templates.default = "plotly_white"
