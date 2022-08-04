@@ -1,8 +1,7 @@
 import pandas as pd
-# import matplotlib.pyplot as plt
-# import plotly.graph_objects as go
-# import plotly.io as pio
-# import seaborn as sb
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+import plotly.io as pio
 import s3fs
 # import boto3
 # import botocore
@@ -41,6 +40,10 @@ model_df['datadate'] = pd.to_datetime(model_df['datadate'])
 model_df['month'] = model_df ['datadate'].dt.to_period('M')
 
 model_df.to_csv('model_df.csv')
+
+#average feature df 
+avg_model_df = s3f.getmodelexplainability(modelname+'-average')
+avg_model_df = avg_model_df.merge(model_desc_df, how='left', on='feature')
 
 #chart df
 chart_df = s3f.getmonthlyavgchart().reset_index()
@@ -85,4 +88,20 @@ print(model_df.head())
 print(filter_model_df.sort_values(by='scaled value score', ascending=False).head())
 print(chart_df.head())
 
+
+
 print(gallery_html)
+
+
+pio.templates.default = "plotly_white"
+
+fig = go.Figure()
+
+fig.add_trace(go.Figure(data=[go.Bar(
+            x= avg_model_df['feature'], y=avg_model_df['value_score'],
+            text=avg_model_df['feature definition'],
+            textposition='outside',)]))
+
+fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+# fig.show()
+fig.show()

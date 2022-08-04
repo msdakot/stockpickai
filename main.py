@@ -40,6 +40,10 @@ model_df = model_df.merge(model_desc_df, how='left', on='feature')
 model_df['datadate'] = pd.to_datetime(model_df['datadate'])
 model_df['month'] = model_df ['datadate'].dt.to_period('M')
 
+#average feature df 
+avg_model_df = s3f.getmodelexplainability(modelname+'-average')
+avg_model_df = avg_model_df.merge(model_desc_df, how='left', on='feature')
+
 #chart df
 chart_df = s3f.getmonthlyavgchart().reset_index()
 chart_df['datadate'] = pd.to_datetime(chart_df['datadate'])
@@ -84,7 +88,7 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 
 
 
-st.markdown(""" <h1 style = "font-size: 25px;
+st.markdown(""" <h1 style = "font-size: 23px;
                               font-style: italic;
                               font-family: Ubuntu, Helvetica;">
                  Allow our automation to make you look like an investing genius 
@@ -95,6 +99,24 @@ st.markdown(""" <h1 style = "font-size: 25px;
                     Explore what financial features of the company or industry boost a stocks out-performance, what to be on the lookout for when investing longterm.
                  </p>
                  """, unsafe_allow_html=True)
+
+
+#plot average model features
+
+pio.templates.default = "plotly_white"
+
+fig = go.Figure()
+
+fig.add_trace(go.Figure(data=[go.Bar(
+            x= avg_model_df['feature'], y=avg_model_df['value_score'],
+            text=avg_model_df['feature definition'],
+            textposition='outside',)]))
+
+fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+# fig.show()
+st.plotly_chart(fig)
+
+
 
 
 #explanatory variables 
