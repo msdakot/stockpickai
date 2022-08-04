@@ -99,7 +99,7 @@ filter_model_df  = filter_model_df.sort_values(by='scaled value score', ascendin
 #html
 text_desc,text_def = filter_model_df['feature description'].head(10),filter_model_df['feature definition'].head(10)
 
-opening_html = '<div style=display:flex;flex-wrap:wrap>'
+opening_html = '<div>'
 closing_html = '</div>'
 
 def flex_button_string(description_child,content_child):
